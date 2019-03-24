@@ -1,9 +1,8 @@
 package lab8;
 
-import java.io.Serializable;
-import java.lang.Comparable;
 
-public enum Color implements Serializable, Comparable<Color>
+
+public enum Color 
 {
 	//rgb
 	BLUE(0, 0, 255), CYAN(0, 255, 255), GREEN(0,255,0), MAGENTA(255, 0, 255), RED(255, 0, 0), YELLOW(255, 255, 0);

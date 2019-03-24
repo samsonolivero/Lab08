@@ -2,16 +2,16 @@ package lab8;
 
 public enum GamePiece 
 {
-	BLUE_RACER(blue, racecar, 2), GREEN_BOOT(green, boot, 9), MAGENTA_RACER(magenta, racecar, 1), RED_RACER(red, racecar, 0),
-	RED_THIMBLE(red, thimble, 10), YELLOW_BOOT(yellow, boot, 7);
+	BLUE_RACER(new GamePieceAppearance(Color.BLUE, Shape.RACECAR), 2), GREEN_BOOT(new GamePieceAppearance(Color.GREEN, Shape.BOOT), 9), 
+	MAGENTA_RACER(new GamePieceAppearance(Color.MAGENTA, Shape.RACECAR), 1), RED_RACER(new GamePieceAppearance(Color.RED, Shape.RACECAR), 0),
+	RED_THIMBLE(new GamePieceAppearance(Color.RED, Shape.THIMBLE), 10), YELLOW_BOOT(new GamePieceAppearance(Color.YELLOW, Shape.BOOT), 7);
 	
 	private GamePieceAppearance appearance;
 	private int priority;
-	private Color color;
 	
-	private GamePiece(String color, GamePieceAppearance appearance, int priority)
+	
+	private GamePiece(GamePieceAppearance appearance, int priority)
 	{
-		this.color = color.valueOf("Blue");
 		
 		this.appearance = appearance;
 		this.priority = priority;	
@@ -19,13 +19,23 @@ public enum GamePiece
 	
 	public Color getColor()
 	{
-		return color;
+		return appearance.getColor();
 	}
 	
 	public Shape getShape()
 	{
 		return appearance.getShape();
 	}
+	
+	public static GamePiece movesFirst(GamePiece a, GamePiece b)
+	{
+		if(a.priority < b.priority)
+		{
+			return a;
+		}
+		return b;
+	}
+	
 	
 	
 	
