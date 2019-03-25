@@ -19,7 +19,7 @@ public class BoardGame
 	
 	public boolean addPlayer(String name, GamePiece gamePiece, Location initialLocation)
 	{
-		//linked hashmap maintains order
+	
 		if(this.gamePiece.values().contains(gamePiece))
 		{
 			return false;
@@ -33,8 +33,6 @@ public class BoardGame
 	
 	public ArrayList<GamePiece> getGamePiecesAtLocation(Location loc)
 	{
-		//TODO
-		//DONE
 		ArrayList<GamePiece> gamePieces = new ArrayList<GamePiece>();
 		
 		//Check API
@@ -50,14 +48,13 @@ public class BoardGame
 	
 	public GamePiece getPlayerGamePiece(String name)
 	{
+		
 		return this.gamePiece.get(name);
 	}
 	
 	
 	public Set<Location> getPlayerLocations()
 	{
-		//TODO
-		//DONE
 		//Coulda done .addALL
 		
 		Set<Location> locations = new HashSet<Location>();
@@ -72,8 +69,6 @@ public class BoardGame
 	
 	public Set<GamePiece> getPlayerPieces()
 	{
-		//TODO
-		//DONE
 		Set<GamePiece> gamePieces = new HashSet<GamePiece>();
 				
 		for(String name : gamePiece.keySet())
@@ -91,8 +86,6 @@ public class BoardGame
 	
 	public ArrayList<String> getPlayersAtLocation(Location loc)
 	{
-		//TODO
-		//DONE
 		ArrayList<String> players = new ArrayList<String>();
 		
 		for(String name : location.keySet())
@@ -112,7 +105,15 @@ public class BoardGame
 	
 	public String getPlayerWithGamePiece(GamePiece gamePiece)
 	{
-		return gamePiece.getShape().toString();
+		
+			for(String name : this.gamePiece.keySet())
+			{
+				if(this.gamePiece.get(name).equals(gamePiece))
+				{
+					return name;
+				}
+			}
+		return null;
 	}
 	
 	public void movePlayer(String playerName, Location newLocation)
@@ -120,10 +121,48 @@ public class BoardGame
 		location.replace(playerName, newLocation);
 	}
 	
-	public String moveTwoPlayers(String[] playerNames, Location[] newLocations)
+	public String[] moveTwoPlayers(String[] playerNames, Location[] newLocations)
 	{
 		//TODO
-		int firstPlayerPriority;
-		int secondPlayerPriority;
+		String[] result = new String[playerNames.length];
+		
+		GamePiece player1 = gamePiece.get(playerNames[0]);
+		GamePiece player2 = gamePiece.get(playerNames[1]);
+		
+	
+		GamePiece priority = GamePiece.movesFirst(player1, player2);
+		
+		if(priority.equals(player1))
+		{
+		
+			result[0] = playerNames[0];
+			System.out.println("Moved Player 1");
+			movePlayer(playerNames[0], newLocations[0]);
+			
+			result[1] = playerNames[1];
+			System.out.println("Moved Player 2");
+			movePlayer(playerNames[1], newLocations[1]);
+			
+			
+		}
+		else
+		{
+			result[0] = playerNames[1];
+			System.out.println("Moved Player 2");
+			movePlayer(playerNames[1], newLocations[1]);
+			
+			result[1] = playerNames[0];
+			System.out.println("Moved Player 1");
+			movePlayer(playerNames[0], newLocations[0]);
+			
+		}
+		
+		
+		
+		return result;
+		
 	}
+	
+	
+
 }
