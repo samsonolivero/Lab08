@@ -106,13 +106,13 @@ public class BoardGame
 	public String getPlayerWithGamePiece(GamePiece gamePiece)
 	{
 		
-			for(String name : this.gamePiece.keySet())
+		for(String name : this.gamePiece.keySet())
+		{
+			if(this.gamePiece.get(name).equals(gamePiece))
 			{
-				if(this.gamePiece.get(name).equals(gamePiece))
-				{
-					return name;
-				}
+				return name;
 			}
+		}
 		return null;
 	}
 	
@@ -136,11 +136,11 @@ public class BoardGame
 		{
 		
 			result[0] = playerNames[0];
-			System.out.println("Moved Player 1");
+			//System.out.println("Moved Player 1");
 			movePlayer(playerNames[0], newLocations[0]);
 			
 			result[1] = playerNames[1];
-			System.out.println("Moved Player 2");
+			//System.out.println("Moved Player 2");
 			movePlayer(playerNames[1], newLocations[1]);
 			
 			
@@ -148,11 +148,11 @@ public class BoardGame
 		else
 		{
 			result[0] = playerNames[1];
-			System.out.println("Moved Player 2");
+			//System.out.println("Moved Player 2");
 			movePlayer(playerNames[1], newLocations[1]);
 			
 			result[1] = playerNames[0];
-			System.out.println("Moved Player 1");
+			//System.out.println("Moved Player 1");
 			movePlayer(playerNames[0], newLocations[0]);
 			
 		}

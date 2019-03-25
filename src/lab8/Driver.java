@@ -41,14 +41,17 @@ public class Driver {
 		
 		//GamePiece Test Driver
 		GamePiece testGamePiece = GamePiece.RED_THIMBLE;
-		System.out.println("Game Piece Color: " + testGamePiece.getColor()
+		
+	    System.out.println("Game Piece Color: " + testGamePiece.getColor()
 		+ "\nGame Piece Shape: " + testGamePiece.getShape());
+		
 		//End GamePiece Test Driver
 		
 		//Color Test Driver
 		Color blue = Color.BLUE;
 		System.out.println("B Value: " + blue.getB() + " - G Value: " + blue.getG() + " - R Value: " + blue.getR());
 		//End Color Test Driver
+		
 		
 		
 		
