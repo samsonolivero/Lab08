@@ -1,8 +1,8 @@
-package lab8;
+
 
 public enum GamePiece 
 {
-	BLUE_RACER(new GamePieceAppearance(Color.BLUE, Shape.RACECAR), 2), GREEN_BOOT(new GamePieceAppearance(Color.GREEN, Shape.BOOT), 9), 
+	BLUE_BOOT(new GamePieceAppearance(Color.BLUE, Shape.BOOT), 5), BLUE_RACER(new GamePieceAppearance(Color.BLUE, Shape.RACECAR), 2), GREEN_BOOT(new GamePieceAppearance(Color.GREEN, Shape.BOOT), 8), 
 	MAGENTA_RACER(new GamePieceAppearance(Color.MAGENTA, Shape.RACECAR), 1), RED_RACER(new GamePieceAppearance(Color.RED, Shape.RACECAR), 0),
 	RED_THIMBLE(new GamePieceAppearance(Color.RED, Shape.THIMBLE), 10), YELLOW_BOOT(new GamePieceAppearance(Color.YELLOW, Shape.BOOT), 7);
 	
@@ -36,6 +36,11 @@ public enum GamePiece
 		return b;
 	}
 	
+	@Override
+	public String toString()
+	{
+		return String.format("%s: a %s %s with priority %d", this.name(), this.getColor().name(), this.getShape().name(), this.priority);
+	}
 	
 	
 	

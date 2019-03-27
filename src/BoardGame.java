@@ -1,4 +1,4 @@
-package lab8;
+
 
 import java.util.ArrayList;
 import java.util.HashSet;
@@ -7,26 +7,26 @@ import java.util.Set;
 
 public class BoardGame
 {
-	protected LinkedHashMap<String, Location> location;
-	protected LinkedHashMap<String, GamePiece> gamePiece;
+	protected LinkedHashMap<String, Location> playerLocations;
+	protected LinkedHashMap<String, GamePiece> playerPieces;
 	
 	public BoardGame()
 	{
-		this.location = new LinkedHashMap<String, Location>();
-		this.gamePiece = new LinkedHashMap<String, GamePiece>();
+		this.playerLocations = new LinkedHashMap<String, Location>();
+		this.playerPieces = new LinkedHashMap<String, GamePiece>();
 		
 	}
 	
-	public boolean addPlayer(String name, GamePiece gamePiece, Location initialLocation)
+	public boolean addPlayer(String playerName, GamePiece gamePiece, Location initialLocation)
 	{
 	
-		if(this.gamePiece.values().contains(gamePiece))
+		if(this.playerPieces.values().contains(gamePiece))
 		{
 			return false;
 		}
 		
-		location.put(name, initialLocation);
-		this.gamePiece.put(name, gamePiece);
+		playerLocations.put(playerName, initialLocation);
+		this.playerPieces.put(playerName, gamePiece);
 		return true;
 		
 	}
@@ -36,20 +36,20 @@ public class BoardGame
 		ArrayList<GamePiece> gamePieces = new ArrayList<GamePiece>();
 		
 		//Check API
-		for(String name : gamePiece.keySet())
+		for(String name : playerPieces.keySet())
 		{
-			if(location.get(name) == loc)
+			if(playerLocations.get(name) == loc)
 			{
-				gamePieces.add(gamePiece.get(name));
+				gamePieces.add(playerPieces.get(name));
 			}
 		}
 		return gamePieces;
 	}
 	
-	public GamePiece getPlayerGamePiece(String name)
+	public GamePiece getPlayerGamePiece(String playerName)
 	{
 		
-		return this.gamePiece.get(name);
+		return this.playerPieces.get(playerName);
 	}
 	
 	
@@ -59,9 +59,9 @@ public class BoardGame
 		
 		Set<Location> locations = new HashSet<Location>();
 		
-		for(String name : location.keySet())
+		for(String name : playerLocations.keySet())
 		{
-			locations.add(location.get(name));
+			locations.add(playerLocations.get(name));
 		}
 		return locations;
 		
@@ -71,9 +71,9 @@ public class BoardGame
 	{
 		Set<GamePiece> gamePieces = new HashSet<GamePiece>();
 				
-		for(String name : gamePiece.keySet())
+		for(String name : playerPieces.keySet())
 		{
-			gamePieces.add(gamePiece.get(name));
+			gamePieces.add(playerPieces.get(name));
 		}
 		return gamePieces;
 		
@@ -81,16 +81,16 @@ public class BoardGame
 	
 	public Set<String> getPlayers()
 	{
-		return location.keySet();
+		return playerLocations.keySet();
 	}
 	
 	public ArrayList<String> getPlayersAtLocation(Location loc)
 	{
 		ArrayList<String> players = new ArrayList<String>();
 		
-		for(String name : location.keySet())
+		for(String name : playerLocations.keySet())
 		{
-			if(location.get(name) == loc)
+			if(playerLocations.get(name) == loc)
 			{
 				players.add(name);
 			}
@@ -100,15 +100,15 @@ public class BoardGame
 	
 	public Location getPlayersLocation(String player)
 	{
-		return location.get(player);
+		return playerLocations.get(player);
 	}
 	
 	public String getPlayerWithGamePiece(GamePiece gamePiece)
 	{
 		
-		for(String name : this.gamePiece.keySet())
+		for(String name : this.playerPieces.keySet())
 		{
-			if(this.gamePiece.get(name).equals(gamePiece))
+			if(this.playerPieces.get(name).equals(gamePiece))
 			{
 				return name;
 			}
@@ -118,7 +118,7 @@ public class BoardGame
 	
 	public void movePlayer(String playerName, Location newLocation)
 	{
-		location.replace(playerName, newLocation);
+		playerLocations.replace(playerName, newLocation);
 	}
 	
 	public String[] moveTwoPlayers(String[] playerNames, Location[] newLocations)
@@ -126,8 +126,8 @@ public class BoardGame
 		//TODO
 		String[] result = new String[playerNames.length];
 		
-		GamePiece player1 = gamePiece.get(playerNames[0]);
-		GamePiece player2 = gamePiece.get(playerNames[1]);
+		GamePiece player1 = playerPieces.get(playerNames[0]);
+		GamePiece player2 = playerPieces.get(playerNames[1]);
 		
 	
 		GamePiece priority = GamePiece.movesFirst(player1, player2);

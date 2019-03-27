@@ -1,10 +1,9 @@
-package lab8;
+
 
 import org.junit.Assert;
 import org.junit.Test;
 
-
-public class EnumTest
+public class EnumsTestOfficial 
 {
 	@Test
 	public  void testColorValues()
@@ -62,5 +61,8 @@ public class EnumTest
 		
 		Assert.assertEquals("Incorrect GamePiece order", test, GamePiece.movesFirst(test, test2));
 		Assert.assertEquals("Incorrect GamePiece order", test, GamePiece.movesFirst(test2, test));
+		
+		Assert.assertEquals("Incorrect ToString", "BLUE_RACER: a BLUE RACECAR with priority 2", test.toString());
 	}
+	
 }

@@ -1,4 +1,4 @@
-package lab8;
+
 
 public class Driver {
 	
@@ -44,6 +44,8 @@ public class Driver {
 		
 	    System.out.println("Game Piece Color: " + testGamePiece.getColor()
 		+ "\nGame Piece Shape: " + testGamePiece.getShape());
+	    
+	    System.out.println(testGamePiece);
 		
 		//End GamePiece Test Driver
 		

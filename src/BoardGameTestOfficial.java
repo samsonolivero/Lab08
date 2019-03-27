@@ -1,4 +1,3 @@
-package lab8;
 
 
 import java.util.ArrayList;
@@ -8,18 +7,19 @@ import java.util.Set;
 import org.junit.Assert;
 import org.junit.Test;
 
-
-public class BoardGameTest
+public class BoardGameTestOfficial 
 {
+
 	@Test
 	public void testBoardGame()
 	{
-		BoardGame test = new BoardGame();
+		BoardGame bg = new BoardGame();
 		
-		test.addPlayer("John", GamePiece.BLUE_RACER, Location.BALLROOM);
-		test.addPlayer("Sam", GamePiece.GREEN_BOOT, Location.BALLROOM);
-		test.addPlayer("Megan", GamePiece.BLUE_RACER, Location.KITCHEN);
-		test.addPlayer("Megan", GamePiece.YELLOW_BOOT, Location.KITCHEN);
+		bg.addPlayer("Vinny", GamePiece.BLUE_BOOT, Location.LIBRARY);
+		bg.addPlayer("John", GamePiece.BLUE_RACER, Location.BALLROOM);
+		bg.addPlayer("Sam", GamePiece.GREEN_BOOT, Location.BALLROOM);
+		bg.addPlayer("Megan", GamePiece.BLUE_RACER, Location.KITCHEN);
+		bg.addPlayer("Megan", GamePiece.YELLOW_BOOT, Location.KITCHEN);
 		
 		//assertEquals() format: Message: (expected, actual)
 		
@@ -29,19 +29,19 @@ public class BoardGameTest
 		expected.add(GamePiece.GREEN_BOOT);
 		
 		ArrayList<GamePiece> actual = new ArrayList<GamePiece>();
-		actual = test.getGamePiecesAtLocation(Location.BALLROOM);
+		actual = bg.getGamePiecesAtLocation(Location.BALLROOM);
 		
 		Assert.assertEquals("Incorrect ArrayList", expected, actual);
 		
 		
 		//Testing getPlayerGamePiece(String name)
 		
-		Assert.assertEquals("Incorrect GamePiece", GamePiece.GREEN_BOOT, test.getPlayerGamePiece("Sam"));
+		Assert.assertEquals("Incorrect GamePiece", GamePiece.GREEN_BOOT, bg.getPlayerGamePiece("Sam"));
 		
 		//Testing getPlayerLocations
 		
 		Set<Location> locations = new HashSet<Location>();
-		locations = test.getPlayerLocations();
+		locations = bg.getPlayerLocations();
 		
 		Location[] testLocations = {Location.BALLROOM, Location.BALLROOM, Location.KITCHEN};
 		
@@ -52,7 +52,7 @@ public class BoardGameTest
 		
 		//Testing getPlayerPieces
 		Set<GamePiece> gamePieces = new HashSet<GamePiece>();
-		gamePieces = test.getPlayerPieces();
+		gamePieces = bg.getPlayerPieces();
 		
 		GamePiece[] testGamePieces = {GamePiece.BLUE_RACER, GamePiece.GREEN_BOOT, GamePiece.YELLOW_BOOT};
 		
@@ -65,7 +65,7 @@ public class BoardGameTest
 		//Testing getPlayers
 		
 		Set<String> players = new HashSet<String>();
-		players = test.getPlayers();
+		players = bg.getPlayers();
 		
 		String[] testGetPlayers = {"John", "Sam", "Megan"};
 		
@@ -76,9 +76,9 @@ public class BoardGameTest
 		
 		
 		//Testing movePlayer AND getPlayersLocation
-		test.movePlayer("Sam", Location.HALL);
+		bg.movePlayer("Sam", Location.HALL);
 		
-		Assert.assertEquals("Incorrect Location", Location.HALL, test.getPlayersLocation("Sam"));
+		Assert.assertEquals("Incorrect Location", Location.HALL, bg.getPlayersLocation("Sam"));
 		
 		//Testing getPlayersAtLocation(Location loc)
 		
@@ -87,16 +87,16 @@ public class BoardGameTest
 	
 		
 		ArrayList<String> actualPlayersAtLocation = new ArrayList<String>();
-		actualPlayersAtLocation = test.getPlayersAtLocation(Location.HALL);
+		actualPlayersAtLocation = bg.getPlayersAtLocation(Location.HALL);
 		
 		Assert.assertEquals("Incorrect ArrayList", expectedPlayersAtLocation, actualPlayersAtLocation);
 		
 		
 		//Testing getPlayersWithGamePiece
 		
-		Assert.assertEquals("Inccorect GamePiece" , "John", test.getPlayerWithGamePiece(GamePiece.BLUE_RACER));
+		Assert.assertEquals("Inccorect GamePiece" , "John", bg.getPlayerWithGamePiece(GamePiece.BLUE_RACER));
 		
-		Assert.assertEquals("Play With GamePiece Does Not Exist", null, test.getPlayerWithGamePiece(GamePiece.MAGENTA_RACER));
+		Assert.assertEquals("Play With GamePiece Does Not Exist", null, bg.getPlayerWithGamePiece(GamePiece.MAGENTA_RACER));
 		
 		
 		//Testing moveTwoPlayers(String[] playerNames, Location[] newLocations)
@@ -104,7 +104,7 @@ public class BoardGameTest
 		String[] playerNames= {"John", "Sam"};
 		Location[] loc = {Location.HALL, Location.BILLIARD_ROOM};
 		
-		test.moveTwoPlayers(playerNames, loc);
+		bg.moveTwoPlayers(playerNames, loc);
 		
 		String[] expectedResult = {"John", "Sam"};
 		String[] actualResult = {"John", "Sam"};
@@ -112,15 +112,9 @@ public class BoardGameTest
 		Assert.assertArrayEquals("Incorrect Player Movement",expectedResult, actualResult);
 		
 		playerNames = new String[]{"Sam", "John"};
-		test.moveTwoPlayers(playerNames, loc);
+		bg.moveTwoPlayers(playerNames, loc);
 		
 		Assert.assertArrayEquals("Incorrect Player Movement", expectedResult, actualResult);
 		
-		
-		
-		
-		
-		
-			
 	}
 }
